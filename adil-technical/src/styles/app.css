@@ -29,3 +29,77 @@
 .navbar a:hover {
   color: #3498db !important;
 }
+
+/* header*/
+#header {
+  height: 80vh;
+  width: 100%;
+  margin-top: 70px !important;
+}
+
+#header h1 {
+  margin: 0 0 10px 0;
+  font-size: 38px;
+  font-weight: 700;
+  color: black;
+}
+
+#header h2 {
+  color: #484848;
+  font-size: 19px;
+}
+
+#header .btn-get-started {
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 10px 30px;
+  border-radius: 50px;
+  color: #3498db;
+  border: 2px solid #3498db;
+  transition: 0.5s;
+}
+
+#header .btn-get-started:hover {
+  background-color: #3498db;
+  color: white;
+}
+
+#header .brand-name {
+  color: #3498db;
+}
+
+#header .header-img {
+  text-align: right;
+}
+
+#header .animated {
+  animation: up-down 2s ease-in-out infinite alternate-reverse both;
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 768px) {
+  #header {
+    margin-top: 20px;
+  }
+  #header h1 {
+    font-size: 24px;
+  }
+  #header h2 {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  #header .header-img img {
+    width: 70%;
+  }
+}

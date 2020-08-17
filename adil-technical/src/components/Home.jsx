@@ -1,10 +1,17 @@
-import React from 'react';
+import React from "react";
+import Common from "./Common";
+import web from "../images/web.svg";
 const Home = () => {
-    return ( 
-        <>
-        <h1>Welcome from Home</h1>
-        </>
-     );
-}
- 
+  return (
+    <>
+      <Common
+        heading="Grow your business with"
+        btnText="Get Started"
+        visit="/service"
+        imgSrc={web}
+      />
+    </>
+  );
+};
+
 export default Home;

@@ -4,7 +4,9 @@ import Contact from "./components/Contact";
 import About from "./components/About";
 import Service from "./components/Service";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle";
 import "./styles/app.css";
 import { Switch, Route, Redirect } from "react-router-dom";
 const App = () => {
@@ -18,6 +20,7 @@ const App = () => {
         <Route path="/service" component={Service} />
         <Redirect to="/" />
       </Switch>
+      <Footer />
     </>
   );
 };
