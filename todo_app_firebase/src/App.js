@@ -17,8 +17,9 @@ function App() {
 
   useEffect(() => {
     db.collection("todos").onSnapshot((snapshot) => {
-      console.log(snapshot.docs.map((doc) => doc.data().todo));
-      setTodos(snapshot.docs.map((doc) => doc.data().todo));
+      setTodos(
+        snapshot.docs.map((doc) => ({ todo: doc.data().todo, id: doc.id }))
+      );
     });
   }, []);
 
@@ -55,7 +56,7 @@ function App() {
 
       <List>
         {todos.map((todo, idx) => (
-          <Todo txt={todo} key={idx} />
+          <Todo todo={todo} key={idx} />
         ))}
       </List>
     </div>
