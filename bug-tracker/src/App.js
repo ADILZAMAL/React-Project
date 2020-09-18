@@ -1,6 +1,6 @@
 import React from "react";
 
-import { store } from "./store";
+import store from "./customStore";
 import * as actions from "./action";
 function App() {
   store.subscribe(() => {
@@ -9,8 +9,8 @@ function App() {
   store.dispatch(actions.addBug("console not working"));
   store.dispatch(actions.addBug("Not giving output as expected"));
   store.dispatch(actions.addBug("push notification not working"));
-store.dispatch(actions.removeBug(2));
-store.dispatch(actions.resolveBug(1))
+  store.dispatch(actions.removeBug(2));
+  store.dispatch(actions.resolveBug(1));
   console.log(store.getState());
   return <div className="App"></div>;
 }
