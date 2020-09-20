@@ -1,12 +1,30 @@
 import React from "react";
 
 import configureStore from "./store/configureStore";
-import { addBug, assignUser, getBugsByUser } from "./store/bug";
+import {
+  onStart,
+  bugsRequested,
+  bugsReceived,
+  addBug,
+  assignUser,
+  getBugsByUser,
+} from "./store/bug";
 import { addUser } from "./store/user";
+import * as actions from "./store/api";
 const store = configureStore();
 function App() {
-  store.subscribe(() => {
-    console.log("Store Changed", store.getState());
+  // store.subscribe(() => {
+  //   console.log("Store Changed", store.getState());
+  // });
+  // store.dispatch(
+  //   actions.apiCallBegan({
+  //     url: "/bugs",
+  //     onStart: "bugsRequested",
+  //     onSuccess: "bugsReceived",
+  //   })
+  // );
+  store.dispatch({
+    type: "bugsRequested",
   });
   // store.dispatch(addBug({ description: "bug 1" }));
   // store.dispatch(addBug({ description: "bug " }));
@@ -21,12 +39,12 @@ function App() {
   // store.dispatch(actions.removeBug({ id: 2 }));
   // store.dispatch(actions.resolveBug({ id: 1 }));
   // console.log(store.getState());
-  store.dispatch({
-    type: "error",
-    payload: {
-      message: "error",
-    },
-  });
+  // store.dispatch({
+  //   type: "error",
+  //   payload: {
+  //     message: "error",
+  //   },
+  // });
   store.dispatch((dispatch, getState) => {
     //call an api
     //when the promise is resolved dispatch an action
