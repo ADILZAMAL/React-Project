@@ -1,0 +1,11 @@
+.table__header {
+  background-color: #ff4b5c;
+  color: white;
+}
+
+.table__item__btn {
+  opacity: 0;
+}
+tr:hover .table__item__btn {
+  opacity: 1;
+}
