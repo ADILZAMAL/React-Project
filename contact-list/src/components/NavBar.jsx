@@ -11,7 +11,7 @@ export default function NavBar(props) {
             {props.navbrand}
           </Navbar.Brand>
           {props.navbrand === "Contact Book" && (
-            <Link to="add-contact">
+            <Link to="/contact/add">
               <Button variant="light" className="ml-auto">
                 Create Contact
               </Button>
