@@ -9,17 +9,30 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import "./styles/app.css";
 import { Switch, Route, Redirect } from "react-router-dom";
+import { PageTransition } from "@steveeeie/react-page-transition";
 const App = () => {
   return (
     <>
       <Navbar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/about" component={About} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/service" component={Service} />
-        <Redirect to="/" />
-      </Switch>
+      <Route
+        render={({ location }) => {
+          return (
+            <PageTransition
+              preset="moveToLeftFromRight"
+              transitionKey={location.pathname}
+            >
+              <Switch location={location}>
+                <Route exact path="/" component={Home} />
+                <Route path="/about" component={About} />
+                <Route path="/contact" component={Contact} />
+                <Route path="/service" component={Service} />
+                <Redirect to="/" />
+              </Switch>
+            </PageTransition>
+          );
+        }}
+      />
+
       <Footer />
     </>
   );
