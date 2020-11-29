@@ -6,51 +6,57 @@ const numCol = 50;
 const operations = [
   [0, 1],
   [0, -1],
+  [1, -1],
+  [-1, 1],
+  [1, 1],
+  [-1, -1],
   [1, 0],
   [-1, 0],
-  [1, 1],
-  [-1, 1],
-  [1, -1],
-  [-1, -1],
 ];
+
 function App() {
   const [grid, setGrid] = useState(() => {
     const rows = [];
     for (let i = 0; i < numRow; i++) {
       rows.push(Array.from(Array(numCol), () => 0));
     }
-    // console.log(rows);
     return rows;
   });
   const [running, setRunning] = useState(false);
-  const runningRef = useRef();
-  runningRef.current = running;
+  // const runningRef = useRef(running);
+  // runningRef.current = running;
+
   const runSimulation = useCallback(() => {
-    if (!runningRef.current) {
+    console.log("simulation function rendered");
+    console.log(running);
+    if (running) {
       return;
     }
     //simulate
     setGrid((g) => {
-      produce(g, (gridCopy) => {
+      return produce(g, (gridCopy) => {
         for (let i = 0; i < numRow; i++) {
-          for (let j = 0; j < numCol; j++) {
+          for (let k = 0; k < numCol; k++) {
             let neighbors = 0;
             operations.forEach(([x, y]) => {
-              let newI = i + x;
-              let newY = j + y;
-              if (newI >= 0 && newI < numRow && newY >= 0 && newY < numCol) {
-                neighbors += g[newI][newY];
+              const newI = i + x;
+              const newK = k + y;
+              if (newI >= 0 && newI < numRow && newK >= 0 && newK < numCol) {
+                neighbors += g[newI][newK];
               }
             });
+
             if (neighbors < 2 || neighbors > 3) {
-              gridCopy[i][j] = 0;
-            } else if (gridCopy[i][j] === 0 && neighbors === 3) {
-              gridCopy[i][j] = 1;
+              gridCopy[i][k] = 0;
+            } else if (g[i][k] === 0 && neighbors === 3) {
+              console.log(neighbors);
+              gridCopy[i][k] = 1;
             }
           }
         }
       });
     });
+
     setTimeout(runSimulation, 1000);
   }, []);
   return (
@@ -58,8 +64,9 @@ function App() {
       <button
         onClick={() => {
           setRunning(!running);
+          console.log(running);
           if (!running) {
-            runningRef.current = true;
+            // runningRef.current = true;
             runSimulation();
           }
         }}
@@ -81,11 +88,11 @@ function App() {
                 width: 20,
                 height: 20,
                 border: "1px solid black",
-                backgroundColor: grid[i][j] ? "pink" : undefined,
+                backgroundColor: grid[i][j] ? "red" : undefined,
               }}
               onClick={() => {
                 const newGrid = produce(grid, (gridCopy) => {
-                  gridCopy[i][j] = gridCopy[i][j] ? 0 : 1;
+                  gridCopy[i][j] = grid[i][j] ? 0 : 1;
                 });
                 setGrid(newGrid);
               }}
